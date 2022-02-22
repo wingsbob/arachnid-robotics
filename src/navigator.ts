@@ -61,7 +61,7 @@ export const navigateV3 = (location: [number, number], orientation: 0 | 90 | 180
 
       if (remainingFuel < 0) throw new Error('ran out of fuel');
 
-      return { orientation, fuel: remainingFuel, location: [Math.max(totX + x * magnitude, 0), Math.max(totY + y * magnitude, 0)] as [number, number] };
+      return { orientation, fuel: remainingFuel, location: [totX + x * magnitude, totY + y * magnitude] as [number, number] };
     }
     const rotationToApply = directionToRotation[direction];
 

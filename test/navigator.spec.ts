@@ -103,5 +103,9 @@ describe('navigator', () => {
       expect(navigateV3([0, 7], 0, ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'F', '3F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', '4F', 'L', 'L', 'L', 'B', 'B', 'B', 'B', 'B', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'F', 'F', 'L', 'R']))
         .to.deep.equal({ fuel: 23, location: [2, 23], orientation: 90 });
     });
+    it('can enter negative co-ordinates', () => {
+      expect(navigateV3([0, 0], 180, ['5F']))
+        .to.deep.equal({ fuel: 25, location: [0, -5], orientation: 180 });
+    });
   });
 });
