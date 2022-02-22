@@ -41,7 +41,7 @@ export const parseInput = (str: string): ParsedInput => {
   if (version !== 1 && rawDirections === undefined)
     throw new Error('Invalid input format');
 
-  const directions = (pickDirectionsArg(version, hasVersion, rawVersion, orientationOrDirections, rawDirections)).split(/(?<=[1-5]?F|[LRB])/);
+  const directions = pickDirectionsArg(version, hasVersion, rawVersion, orientationOrDirections, rawDirections).split(/(?<=[1-5]?F|[LRB])/);
   const orientation = version !== 1 ? parseInt(orientationOrDirections, 10) : 0;
 
   if (!isOnlyDirections(directions, version) || !isOrientation(orientation))
