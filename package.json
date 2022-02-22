@@ -1,0 +1,28 @@
+{
+  "name": "arachnid-robotics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register test/*.spec.ts",
+    "test:watch": "npm test -- --watch --watch-extensions ts --watch-files src/**,test/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wingsbob/arachnid-robotics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wingsbob/arachnid-robotics/issues"
+  },
+  "homepage": "https://github.com/wingsbob/arachnid-robotics#readme",
+  "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "chai": "^4.3.6",
+    "mocha": "^9.2.1",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
