@@ -20,6 +20,9 @@ describe('input parser', () => {
   it('validates v2 input', () => {
     expect(() => parseInput('1,1,1,2,BFLR')).to.throw('Invalid input format');
   });
+  it('validates input version', () => {
+    expect(() => parseInput('1,1,3,0,BFLR')).to.throw('Invalid version');
+  });
   describe('test data', () => {
     it('parses test data correctly', () => {
       expect(parseInput('0,0,FRFRFFFFFFFLLLLFFFFFRFFFFLFFLRRF')).to.deep.equal({
@@ -49,7 +52,7 @@ describe('input parser', () => {
       });
     });
     it('parses v2 test data correctly', () => {
-      expect(parseInput('0,7,90,2,RRRRRRRRFFFFFFFFFFFLLLBBBBBRRRLLLLLFFLR')).to.deep.equal({
+      expect(parseInput('0,7,2,90,RRRRRRRRFFFFFFFFFFFLLLBBBBBRRRLLLLLFFLR')).to.deep.equal({
         x: 0,
         y: 7,
         directions: ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'L', 'L', 'L', 'B', 'B', 'B', 'B', 'B', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'F', 'F', 'L', 'R'],

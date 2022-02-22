@@ -18,8 +18,14 @@ const isOrientation = (value: number): value is Orientation =>
 const isOnlyDirections = (arr: string[]): arr is Direction[] =>
   arr.every(str => validDirections.includes(str));
 
+const pickDirectionsArg = (version: number, versionSpecified: boolean, versionOrDirections: string, orientationOrDirections: string, directions: string) => {
+  if (!versionSpecified) return versionOrDirections;
+
+  return version === 1 ? orientationOrDirections : directions;
+}
+
 export const parseInput = (str: string): ParsedInput => {
-  const [rawX, rawY, orientationOrDirections, rawVersion, rawDirections] = str.split(',');
+  const [rawX, rawY, rawVersion, orientationOrDirections, rawDirections] = str.split(',');
 
   const x = parseInt(rawX, 10);
   const y = parseInt(rawY, 10);
@@ -29,8 +35,13 @@ export const parseInput = (str: string): ParsedInput => {
 
   const hasVersion = !Number.isNaN(parseInt(rawVersion));
   const version = hasVersion ? parseInt(rawVersion) : 1;
-  const directions = (version === 2 ? rawDirections : orientationOrDirections).split('');
-  const orientation = version === 1 ? 0 : parseInt(orientationOrDirections, 10)
+  if (version !== 1 && version !== 2)
+    throw new Error('Invalid version');
+  if (version === 2 && rawDirections === undefined)
+    throw new Error('Invalid input format');
+
+  const directions = (pickDirectionsArg(version, hasVersion, rawVersion, orientationOrDirections, rawDirections)).split('');
+  const orientation = version === 2 ? parseInt(orientationOrDirections, 10) : 0;
 
   if (!isOnlyDirections(directions) || !isOrientation(orientation))
     throw new Error('Invalid input format');
