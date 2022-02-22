@@ -1,8 +1,8 @@
 import { parseInput } from './parseInput';
-import { navigate } from './navigator';
+import { navigateV1 } from './navigator';
 
 const [,,input] = process.argv;
 
 const { x, y, directions } = parseInput(input);
 
-console.log(navigate([x, y], directions));
+console.log(navigateV1([x, y], directions));
