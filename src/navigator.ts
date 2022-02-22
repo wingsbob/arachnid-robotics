@@ -32,11 +32,12 @@ export const navigateV1 = (start: [number, number], directions: Direction[] = []
 
 
 export const navigateV2 = (location: [number, number], orientation: 0 | 90 | 180 | 270, directions: Direction[] = []) =>
-  directions.reduce<BotLocation>(({ location: [totX, totY], orientation }, direction) => {
+  directions.reduce<BotLocation>(({ location, orientation }, direction) => {
     const rotationToApply = directionToRotation[direction];
 
     if (direction === 'F') {
       const [x, y] = orientationToTranslation[orientation];
+      const [totX, totY] = location;
 
       return { orientation, location: [Math.max(totX + x, 0), Math.max(totY + y, 0)] };
     }

@@ -66,20 +66,24 @@ describe('navigator', () => {
     });
     it('handles sequences of movement', () => {
       expect(navigateV2([0, 0], 0, ['F', 'F', 'F', 'L', 'L', 'L', 'F', 'F', 'F', 'R', 'R', 'R', 'R', 'R', 'B', 'B']))
-        .to.deep.equal({ location: [0, 0], orientation: 180 });
+        .to.deep.equal({ location: [3, 3], orientation: 180 });
     });
     describe('test data', () => {
+      it('navigates the test data correctly', () => {
+        expect(navigateV2([0, 0], 0, ['F', 'B', 'L', 'R']))
+          .to.deep.equal({ location: [0, 1], orientation: 180 });
+      });
       it('navigates the test data correctly', () => {
         expect(navigateV2([0, 0], 0, ['F', 'R', 'F', 'R', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'L', 'L', 'L', 'L', 'F', 'F', 'F', 'F', 'F', 'R', 'F', 'F', 'F', 'F', 'L', 'F', 'F', 'L', 'R', 'R', 'F']))
           .to.deep.equal({ location: [0, 0], orientation: 270 });
       });
       it('navigates the test data correctly', () => {
         expect(navigateV2([3, 6], 0, ['F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'F', 'F', 'F', 'F', 'L', 'L', 'L', 'B', 'B', 'R', 'R', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'R', 'F', 'F', 'F']))
-          .to.deep.equal({ location: [6, 6], orientation: 90 });
+          .to.deep.equal({ location: [3, 14], orientation: 90 });
       });
       it('navigates the test data correctly', () => {
         expect(navigateV2([0, 7], 0, ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'L', 'L', 'L', 'B', 'B', 'B', 'B', 'B', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'F', 'F', 'L', 'R']))
-          .to.deep.equal({ location: [0, 7], orientation: 90 });
+          .to.deep.equal({ location: [2, 18], orientation: 90 });
       });
     });
   });
