@@ -10,7 +10,7 @@ interface ParsedInput {
   y: number;
   directions: Direction[];
   orientation: Orientation;
-  version: number;
+  version: 1 | 2 | 3;
 }
 
 const isOrientation = (value: number): value is Orientation =>
