@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { navigateV1, navigateV2 } from '../src/navigator';
+import { navigateV1, navigateV2, navigateV3 } from '../src/navigator';
 
 describe('navigator', () => {
   describe('version 1', () => {
@@ -91,6 +91,17 @@ describe('navigator', () => {
   });
 
   describe('version 3', () => {
-
+    it('crashes if total boosts exceeds fuel capacity', () => {
+      expect(() => navigateV3([0, 0], 0, ['5F', '5F', '5F', '5F', '5F', '5F', '5F']))
+        .to.throw('out of fuel');
+    });
+    it('can boost forwards', () => {
+      expect(navigateV3([0, 0], 0, ['5F']))
+        .to.deep.equal({ fuel: 25, location: [0, 5], orientation: 0 });
+    });
+    it('navigates the test data correctly', () => {
+      expect(navigateV3([0, 7], 0, ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'F', '3F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', '4F', 'L', 'L', 'L', 'B', 'B', 'B', 'B', 'B', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'F', 'F', 'L', 'R']))
+        .to.deep.equal({ fuel: 23, location: [2, 23], orientation: 90 });
+    });
   });
 });
