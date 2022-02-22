@@ -43,14 +43,20 @@ describe('navigator', () => {
     it('moves forward one when told to move forward 1', () => {
       expect(navigateV2([0, 0], 0, ['F'])).to.deep.equal({ location: [0, 1], orientation: 0 });
     });
-    it('moves backward one when told to move backward 1', () => {
+    it('rotates 180 degress when told to go backwards', () => {
       expect(navigateV2([0, 0], 0, ['B'])).to.deep.equal({ location: [0, 0], orientation: 180 });
     });
-    it('moves left one when told to move left 1', () => {
+    it('rotates 90 degress left one when told to go left', () => {
       expect(navigateV2([0, 0], 0, ['L'])).to.deep.equal({ location: [0, 0], orientation: 270 });
     });
-    it('moves right one when told to move right 1', () => {
+    it('rotates 90 degress right one when told to go right', () => {
       expect(navigateV2([0, 0], 0, ['R'])).to.deep.equal({ location: [0, 0], orientation: 90 });
+    });
+    it('handles multiple rotations', () => {
+      expect(navigateV2([0, 0], 0, ['R', 'L'])).to.deep.equal({ location: [0, 0], orientation: 0 });
+    });
+    it('handles multiple rotations', () => {
+      expect(navigateV2([0, 0], 0, ['B', 'B'])).to.deep.equal({ location: [0, 0], orientation: 0 });
     });
     it('does not move into negative territory', () => {
       expect(navigateV2([0, 0], 180, ['F'])).to.deep.equal({ location: [0, 0], orientation: 180 });
