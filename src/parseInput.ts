@@ -28,8 +28,8 @@ export const parseInput = (str: string): ParsedInput => {
     throw new Error('Invalid input format');
 
   const hasVersion = !Number.isNaN(parseInt(rawVersion));
-  const directions = (hasVersion ? rawDirections : orientationOrDirections).split('');
   const version = hasVersion ? parseInt(rawVersion) : 1;
+  const directions = (version === 2 ? rawDirections : orientationOrDirections).split('');
   const orientation = version === 1 ? 0 : parseInt(orientationOrDirections, 10)
 
   if (!isOnlyDirections(directions) || !isOrientation(orientation))

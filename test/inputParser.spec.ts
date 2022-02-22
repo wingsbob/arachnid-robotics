@@ -11,6 +11,9 @@ describe('input parser', () => {
   it('validates input', () => {
     expect(() => parseInput('1,1,ADGF')).to.throw('Invalid input format');
   });
+  it('validates v1 input with explicit version', () => {
+    expect(() => parseInput('1,1,1,ADGF')).to.throw('Invalid input format');
+  });
   it('validates v2 input', () => {
     expect(() => parseInput('1,1,2,BFLR')).to.throw('Invalid input format');
   });
