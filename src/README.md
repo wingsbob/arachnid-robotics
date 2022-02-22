@@ -15,6 +15,11 @@ V1 format
 V2 format
 `x,y,version,orientation,directionList`
 
-Valid directions are `F` `B` `L` and `R`
+V3 format
+`x,y,version,orientation,directionList`
 
-Valid versions are 1 or 2
+Valid directions are `F` `B` `L` and `R` for versionless, version 1 and 2. For version 3 boosts can be specified by adding 1-5 ahead of a `F` command.
+
+If the total of boosts for version 3 exceeds the fuel requirement, then an error will occur during operation. Boosts above the overheating threshold will be detected during input validation.
+
+Valid versions are 1, 2 or 3

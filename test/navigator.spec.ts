@@ -89,4 +89,8 @@ describe('navigator', () => {
       });
     });
   });
+
+  describe('version 3', () => {
+
+  });
 });

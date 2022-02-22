@@ -20,8 +20,14 @@ describe('input parser', () => {
   it('validates v2 input', () => {
     expect(() => parseInput('1,1,1,2,BFLR')).to.throw('Invalid input format');
   });
+  it('validates v3 input', () => {
+    expect(() => parseInput('1,1,3,0,3BFLR')).to.throw('Invalid input format');
+  });
+  it('validates v3 input', () => {
+    expect(() => parseInput('1,1,3,0,B6FLR')).to.throw('Invalid input format');
+  });
   it('validates input version', () => {
-    expect(() => parseInput('1,1,3,0,BFLR')).to.throw('Invalid version');
+    expect(() => parseInput('1,1,4,0,BFLR')).to.throw('Invalid version');
   });
   describe('test data', () => {
     it('parses test data correctly', () => {
@@ -57,6 +63,15 @@ describe('input parser', () => {
         y: 7,
         directions: ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'L', 'L', 'L', 'B', 'B', 'B', 'B', 'B', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'F', 'F', 'L', 'R'],
         version: 2,
+        orientation: 90,
+      });
+    });
+    it('parses v3 test data correctly', () => {
+      expect(parseInput('0,7,3,90,RRRRRRRRFFF5FFFFFFFFLLLBBBBBRRRLLLLLFFLR')).to.deep.equal({
+        x: 0,
+        y: 7,
+        directions: ['R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'F', 'F', 'F', '5F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'L', 'L', 'L', 'B', 'B', 'B', 'B', 'B', 'R', 'R', 'R', 'L', 'L', 'L', 'L', 'L', 'F', 'F', 'L', 'R'],
+        version: 3,
         orientation: 90,
       });
     });
